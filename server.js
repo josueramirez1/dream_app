@@ -13,7 +13,7 @@ const app = express();
 app.use(
   cors({
     origin: "https://rainbow-fenglisu-47934b.netlify.app",
-    methods: ["GET", "POST", "OPTIONS"],
+    methods: ["POST", "OPTIONS"],
   })
 );
 
@@ -36,6 +36,11 @@ app.post("/", async (req, res) => {
       .status(500)
       .send(error?.response.data.error.message || `Something went wrong.`);
   }
+});
+
+app.use((req, res, next) => {
+  console.log(`[${req.method}] ${req.path}`);
+  next();
 });
 
 app.listen(8080, () =>
