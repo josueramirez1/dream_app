@@ -1,29 +1,22 @@
-import * as dotevn from "dotenv";
-import OpenAi from "openai";
+import * as dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
+import OpenAi from "openai";
 
-dotevn.config();
+dotenv.config();
 const openai = new OpenAi({
   apiKey: process.env.OPENAI,
 });
 
 const app = express();
 
-app.use((req, res, next) => {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://rainbow-fenglisu-47934b.netlify.app"
-  );
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
-
-// Explicitly respond to OPTIONS requests for all routes
-app.options("*", (req, res) => {
-  res.sendStatus(200);
-});
+app.use(
+  cors({
+    origin: "https://rainbow-fenglisu-47934b.netlify.app",
+    methods: ["GET", "POST", "OPTIONS"],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
@@ -42,10 +35,11 @@ app.post("/", async (req, res) => {
     console.error(error);
     res
       .status(500)
-      .send(error?.response.data.error.message || `Something went wrong.`);
+      .send(error?.response?.data?.error?.message || `Something went wrong.`);
   }
 });
 
-app.listen(8080, () =>
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () =>
   console.log("make art on https://rainbow-fenglisu-47934b.netlify.app")
 );
