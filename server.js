@@ -10,7 +10,7 @@ const openai = new OpenAi({
 const app = express();
 app.use(
   cors({
-    origin: "https://dream-ai-generator.netlify.app",
+    origin: "https://rainbow-fenglisu-47934b.netlify.app",
     methods: ["GET", "POST", "OPTIONS"],
     credentials: true,
   })
@@ -42,5 +42,5 @@ app.post("/dream", async (req, res) => {
 });
 
 app.listen(8080, () =>
-  console.log("make art on https://dream-app-m0u7.onrender.com")
+  console.log("make art on https://rainbow-fenglisu-47934b.netlify.app")
 );
