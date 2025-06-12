@@ -7,7 +7,7 @@ form.addEventListener("submit", async (e) => {
   showSpinner();
   const data = new FormData(form);
 
-  const response = await fetch("https://dream-app-m0u7.onrender.com", {
+  const response = await fetch("https://dream-app-22id.onrender.com", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
