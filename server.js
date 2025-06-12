@@ -20,7 +20,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Must handle OPTIONS requests explicitly:
+// Explicitly respond to OPTIONS requests for all routes
 app.options("*", (req, res) => {
   res.sendStatus(200);
 });
