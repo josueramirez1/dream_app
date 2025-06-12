@@ -1,4 +1,5 @@
 import "./styles.css";
+
 const form = document.querySelector("form");
 
 form.addEventListener("submit", async (e) => {
@@ -19,8 +20,7 @@ form.addEventListener("submit", async (e) => {
   if (response.ok) {
     const { image } = await response.json();
     const result = document.querySelector("#result");
-    console.log(result);
-    result.innerHTML = `<img src="${image}" width = "512" />`;
+    result.innerHTML = `<img src="${image}" width="512" />`;
   } else {
     const err = await response.text();
     alert(err);
@@ -35,6 +35,7 @@ function showSpinner() {
   button.disabled = true;
   button.innerHTML = `Dreaming... <span class="spinner">🧠</span>`;
 }
+
 function hideSpinner() {
   const button = document.querySelector("button");
   button.disabled = false;

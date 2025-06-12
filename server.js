@@ -7,20 +7,17 @@ dotevn.config();
 const openai = new OpenAi({
   apiKey: process.env.OPENAI,
 });
+
 const app = express();
+
 app.use(
   cors({
     origin: "https://rainbow-fenglisu-47934b.netlify.app",
     methods: ["GET", "POST", "OPTIONS"],
-    credentials: true,
   })
 );
 
-app.options("*", cors());
-
 app.use(express.json());
-// express does not parse json by default
-// cors is middleware that will parse json before every endpoint callback
 
 app.post("/", async (req, res) => {
   try {
