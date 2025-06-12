@@ -32,4 +32,6 @@ app.post("/dream", async (req, res) => {
   }
 });
 
-app.listen(8080, () => console.log("make art on http://localhost:8080/dream"));
+app.listen(8080, () =>
+  console.log("make art on https://dream-app-m0u7.onrender.com")
+);
