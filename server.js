@@ -22,7 +22,7 @@ app.use(express.json());
 // express does not parse json by default
 // cors is middleware that will parse json before every endpoint callback
 
-app.post("/dream", async (req, res) => {
+app.post("/", async (req, res) => {
   try {
     const prompt = req.body.prompt;
     const aiResponse = await openai.images.generate({
