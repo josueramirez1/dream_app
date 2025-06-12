@@ -1,7 +1,7 @@
 import * as dotevn from "dotenv";
+import OpenAi from "openai";
 import express from "express";
 import cors from "cors";
-import OpenAi from "openai";
 
 dotevn.config();
 const openai = new OpenAi({
@@ -10,12 +10,20 @@ const openai = new OpenAi({
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "https://rainbow-fenglisu-47934b.netlify.app",
-    methods: ["POST", "OPTIONS"],
-  })
-);
+app.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://rainbow-fenglisu-47934b.netlify.app"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
+
+// Must handle OPTIONS requests explicitly:
+app.options("*", (req, res) => {
+  res.sendStatus(200);
+});
 
 app.use(express.json());
 
@@ -36,11 +44,6 @@ app.post("/", async (req, res) => {
       .status(500)
       .send(error?.response.data.error.message || `Something went wrong.`);
   }
-});
-
-app.use((req, res, next) => {
-  console.log(`[${req.method}] ${req.path}`);
-  next();
 });
 
 app.listen(8080, () =>
