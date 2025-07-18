@@ -1,8 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Rubik+Glitch&family=Rubik+Microbe&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Domine:wght@400..700&display=swap");
+
+@font-face {
+  font-family: "Satoshi";
+  src: url(../dream-app/fonts/Satoshi-Variable.ttf);
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
-  background-color: #0b0b0e;
+  background: url(img/clouds.jpg) center;
   color: white;
-  font-family: "Poppins", sans-serif;
+  font-family: "Satoshi", monospace;
   margin-top: 50px;
 }
 
@@ -12,7 +21,7 @@ main {
 }
 
 h1 {
-  font-family: "Rubik Microbe", cursive;
+  font-family: "Domine", serif;
   font-weight: 400;
   font-size: 5rem;
 }
@@ -42,6 +51,7 @@ textarea {
   height: 100px;
   margin: 10px 0;
   font-size: 1.5rem;
+  font-family: inherit;
 }
 
 button {
